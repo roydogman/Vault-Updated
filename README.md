@@ -1,46 +1,76 @@
-# Vault - Abstraction Library for Bukkit - [![Build Status](https://app.travis-ci.com/MilkBowl/Vault.svg?branch=master)](https://app.travis-ci.com/MilkBowl/Vault)
+# Vault-Updated - Abstraction Library for Bukkit
 
-## For Developers:
-Please see the [VaultAPI](https://www.github.com/MilkBowl/VaultAPI) page for
-information on developing with Vault's API. In the past, you would use the same
-artifact as servers installed, but the API has now been split from the main
-project and is under a different artifact name. Please make sure you accommodate
-this change in your build process.
+## About This Fork
+This is an updated version of the original [Vault by MilkBowl](https://github.com/MilkBowl/Vault). The original Vault hasn't been maintained and contained hooks for many abandoned plugins. This version:
+
+* Merges VaultAPI directly into Vault — one plugin, one download
+* Removes all dead/abandoned plugin hooks
+* Adds full support for modern plugins (LuckPerms, EssentialsX)
+* Updated for Minecraft 1.20 - 1.21+
+* Works on both Spigot and Paper servers
+* Cleaner, lighter codebase
+
+## For Developers
+VaultAPI is now included in Vault. No separate dependency needed.
+
+Use the same API classes you always have:
+* `net.milkbowl.vault.economy.Economy`
+* `net.milkbowl.vault.permission.Permission`
+* `net.milkbowl.vault.chat.Chat`
+
+Just add Vault as a dependency in your project.
 
 ## Installing
-Installing Vault is as simple as copying the provided "Vault.jar" to your
-"<bukkit-install-dir>/plugins" directory, and the rest is automatic! If you
-wish to perform configuration changes, this can be done via a configuration
-file but should not be necessary in most cases. See the "Advanced
-Configuration" section for more information.
-
+Copy "Vault-2.0.0.jar" to your `plugins` folder and restart your server. That's it!
 
 ## Why Vault?
-I have no preference which library suits your plugin and development efforts
-best. Really, I thought a central suite (rather...Vault) of solutions was the
-proper avenue than focusing on a single category of plugin. That's where
-the idea for Vault came into play.
+Vault provides a bridge between plugins that need economy, permissions, or chat features and the plugins that provide those features. Instead of supporting every economy plugin individually, developers just support Vault.
 
-So, what features do I _think_ you'll like the most?
+**Benefits:**
+* No need to include Vault source code in your plugin
+* One API for multiple backend plugins
+* Freedom to choose which economy/permission plugin you use
 
-* No need to include my source code in your plugin
-  All of Vault is run in its own plugin, so all you need to do is obtain an
-  instance of it! This simplifies issues with multiple plugins using the same
-  namespaces. Just simply add Vault.jar to your download zip file!
-* Broad range of supported plugins
-  I wanted an abstraction layer not only for Economic plugins but also
-  Permission plugins as well.
-* Choice!
-  That's half the fun of Bukkit! We get to choose what to use. More choice
-  has never hurt developers, so here's to choice!
-
+## Commands
+* `/vault-info` - Shows Vault version and hooked plugins
 
 ## Permissions
-* vault.admin
-  - Determines if a player should receive the update notices
+* `vault.admin` - Access to Vault admin commands and update notices
+
+## Supported Plugins
+
+### Permissions
+* LuckPerms (https://luckperms.net)
+* SuperPerms (Bukkit's built-in fallback)
+
+### Economy
+* EssentialsX (https://essentialsx.net)
+
+### Chat
+* LuckPerms (https://luckperms.net)
+
+Other plugins may have built-in Vault support. Check with the plugin developer.
+
+## Removed Plugins
+The following abandoned plugins were removed from this version:
+* **Permissions:** bPermissions, DroxPerms, Group Manager, OverPermissions, Permissions 3, PermissionsBukkit, PermissionsEx (PEX), Privileges, rscPermissions, SimplyPerms, TotalPermissions, XPerms, zPermissions
+* **Economy:** iConomy, BOSEconomy, 3Co, MultiCurrency, MineConomy, eWallet, EconXP, CurrencyCore, CraftConomy, AEco, Gringotts
+* **Chat:** iChat, mChat, mChatSuite, Herochat, bPermissions chat, PEX chat, DroxPerms chat
+
+## Credits
+**Original Vault by:**
+* Sleaker (Morgan Humes)
+* cereal
+* mung3r
+* Kainzo
+* MilkBowl Team
+
+**Updated by:**
+* roydogman
 
 ## License
 Copyright (C) 2011-2018 Morgan Humes <morgan@lanaddict.com>
+Updated 2024 by roydogman
 
 Vault is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
@@ -55,54 +85,7 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 with Vault. If not, see <http://www.gnu.org/licenses/>.
 
-## Building
-Vault comes with all libraries needed to build from the current branch and
-also comes with an Apache Ant build file (build.xml) and a Maven build file
-(pom.xml). Maven is currently the preferred build method.
-
-
-## Dependencies
-Because Vault provides a bridge to other plugins, their binaries will be
-required to build from. To ease this, they have been included in the lib
-folder and will be updated from time to time. For plugin developers, it
-is not necessary to use these libraries when implementing Vault. You will
-only need to compile against Vault.
-
-
-## Supported Plugins
-Vault provides abstraction for the following categories and plugins. If
-you have your own plugin that you believe should be supported, you'll need
-to add your own connector within your plugin as Vault no longer maintains
-new plugin connectors.
-
-* Permissions
-  - bPermissions
-  - bPermissions 2 (https://dev.bukkit.org/projects/bpermissions)
-  - DroxPerms
-  - Group Manager (Essentials) (https://forums.bukkit.org/threads/15312/)
-  - LuckPerms (https://www.spigotmc.org/resources/luckperms-an-advanced-permissions-plugin.28140/)
-  - OverPermissions (https://dev.bukkit.org/projects/overpermissions)
-  - Permissions 3 (https://forums.bukkit.org/threads/18430/)
-  - PermissionsBukkit
-  - Permissions Ex (PEX) (https://forums.bukkit.org/threads/18140/)
-  - Privileges
-  - rscPermissions
-  - SimplyPerms
-  - SuperPerms (Bukkit's default)
-  - TotalPermissions (https://dev.bukkit.org/projects/totalpermissions)
-  - XPerms
-  - zPermissions
-
-* Chat
-  - bPermissions
-  - Group Manager (Essentials) (https://forums.bukkit.org/threads/15312/)
-  - iChat
-  - LuckPerms (https://www.spigotmc.org/resources/luckperms-an-advanced-permissions-plugin.28140/)
-  - mChat
-  - mChatSuite
-  - OverPermissions (https://dev.bukkit.org/projects/overpermissions)
-  - Permissions 3 (https://forums.bukkit.org/threads/18430/)
-  - Permissions Ex (PEX) (https://forums.bukkit.org/threads/18140/)
-  - rscPermissions
-  - TotalPermissions (https://dev.bukkit.org/projects/totalpermissions)
-  - zPermissions
+## Links
+* **This Fork:** https://github.com/roydogman/Vault-Updated
+* **Original Vault:** https://github.com/MilkBowl/Vault
+* **Original VaultAPI:** https://github.com/MilkBowl/VaultAPI
