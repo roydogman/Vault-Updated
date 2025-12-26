@@ -1,0 +1,23 @@
+name: Vault-Updated
+version: 2.0.0
+main: net.milkbowl.vault.Vault
+api-version: '1.21'
+description: An abstraction library for Bukkit providing unified APIs for Economy, Permission, and Chat systems.
+authors: [cereal, Sleaker, mung3r, roydogman]
+website: https://github.com/roydogman/Vault-Updated
+load: STARTUP
+
+commands:
+  vault-info:
+    description: Displays information about Vault
+    usage: /<command>
+    permission: vault.admin
+  vault-convert:
+    description: Converts economy data between two economy plugins
+    usage: /<command> <economy1> <economy2>
+    permission: vault.admin
+
+permissions:
+  vault.admin:
+    description: Allows access to Vault admin commands
+    default: op
